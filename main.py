@@ -5,8 +5,8 @@ clips = os.listdir('./clips/')
 video = concatenate_videoclips([ VideoFileClip(os.path.join('./clips', clip)).without_audio() for clip in clips ], method='compose')
 video = video.resize(width=1920,height=1080)
 
-hours = 1
-minutes = 30
+hours = 0
+minutes = 1
 reqDuration = (hours * 60 + minutes) * 60
 # reqDuration = 50
 finalVideo = video.loop(duration=reqDuration)

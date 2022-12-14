@@ -1,19 +1,10 @@
-import os
-from moviepy.editor import *
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
-clips = os.listdir('./clips/')
-video = concatenate_videoclips([ VideoFileClip(os.path.join('./clips', clip)).without_audio() for clip in clips ], method='compose')
-video = video.resize(width=1920,height=1080)
-
-hours = 0
-minutes = 1
-reqDuration = (hours * 60 + minutes) * 60
-# reqDuration = 50
-finalVideo = video.loop(duration=reqDuration)
-
-# music = AudioFileClip('./audio_clip.mp3')
-# audio = afx.audio_loop(music, duration=reqDuration)
-# finalVideo = finalVideo.set_audio(audio)
-
-
-finalVideo.write_videofile('merged.mp4', codec='libx264')
+options = Options()
+options.headless = True
+print('Working')
+driver = webdriver.Chrome(options=options, executable_path=r'C:\webdrivers\chromedriver.exe')
+driver.get('https://youtube.com')
+print(driver.page_source)
+driver.quit()
